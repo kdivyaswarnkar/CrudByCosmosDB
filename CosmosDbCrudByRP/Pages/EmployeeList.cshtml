@@ -1,0 +1,95 @@
+﻿@page "/"
+@model CosmosDbCrudByRP.Pages.EmployeeListModel
+@using CosmosDbCrudByRP.Models;
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+@{
+    ViewData["Title"] = "Employee Management";
+    IEnumerable<EmployeeModel> Employee = (IEnumerable<EmployeeModel>)ViewData["Employees"];
+}
+
+
+<div class="text-center card-title text-dark">
+    <a asp-page="/Index" class="btn btn-primary" style="float: left;">Add Employee</a>
+    <h1>@ViewData["Title"]</h1>
+</div>
+@{
+    if (TempData["Added"] != null)
+    {
+        <p style="color:green">@TempData["Added"]</p>
+    }
+        if (TempData["Updated"] != null)
+        {
+            <p style="color:green">@TempData["Updated"]</p>
+        }
+    
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr class="bg-info">
+            <th class="sortable">Name</th>
+            <th class="sortable">Country</th>
+            <th class="sortable">City</th>
+            <th class="sortable">Department</th>
+            <th class="sortable">Designation</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (EmployeeModel employee in (IEnumerable<EmployeeModel>)ViewData["Employees"])
+        {
+            <tr>
+                <td>@employee.Name</td>
+                <td>@employee.Country</td>
+                <td>@employee.City</td>
+                <td>@employee.Department</td>
+                <td>@employee.Designation</td>
+                <td>
+                    <a class="btn btn-info editBtn" asp-page="/Edit" asp-route-id="@employee.id" asp-route-partitionKey="@employee.id">Edit</a> &nbsp;
+
+                    <a class="btn btn-danger deleteBtn" asp-page="/Delete" asp-route-id="@employee.id" asp-route-partitionKey="@employee.id">Delete</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-page="/Index">Back to form</a>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.sortable').click(function () {
+            var table = $(this).closest('table');
+            var rows = table.find('tbody > tr').toArray().sort(comparator($(this).index()));
+
+            this.asc = !this.asc;
+            if (!this.asc) {
+                rows = rows.reverse();
+            }
+
+            for (var i = 0; i < rows.length; i++) {
+                table.append(rows[i]);
+            }
+        });
+
+        function comparator(index) {
+            return function (a, b) {
+                var valA = getCellValue(a, index),
+                    valB = getCellValue(b, index);
+
+                return $.isNumeric(valA) && $.isNumeric(valB) ?
+                    valA - valB : valA.localeCompare(valB);
+            };
+        }
+
+        function getCellValue(row, index) {
+            return $(row).children('td').eq(index).text();
+        }
+    });
+
+</script>
+

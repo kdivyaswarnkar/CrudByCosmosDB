@@ -1,0 +1,177 @@
+﻿@page "/Index"
+@model CosmosDbCrudByRP.Pages.IndexModel
+@using CosmosDbCrudByRP.Models;
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+@{
+   // ViewData["Title"] = "Employee Management";
+    IEnumerable<EmployeeModel> Employee = (IEnumerable<EmployeeModel>)ViewData["Employees"];
+}
+
+<div class="text-center card-title text-dark">
+    <h1>@ViewData["Title"]</h1>
+</div>
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title font-weight-bold text-center text-danger">Employee Form</h5>
+        <form id="employeeForm" method="post" onsubmit="return validateForm()">
+
+            @*<form id="employeeForm" method="post">*@
+
+            <div class="form-group">
+                <label for="eid">Id:</label>
+                <input type="text" class="form-control" id="eid" name="Id" asp-for="Employee.id" />
+                <span id="eidError" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="Name" asp-for="Employee.Name" />
+                <span id="nameError" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="country">Country:</label>
+                <input type="text" class="form-control" id="country" name="Country" asp-for="Employee.Country" />
+                <span id="countryError" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" class="form-control" id="city" name="City" asp-for="Employee.City" />
+                <span id="cityError" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <input type="text" class="form-control" id="department" name="Department" asp-for="Employee.Department" />
+                <span id="departmentError" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="designation">Designation:</label>
+                <input type="text" class="form-control" id="designation" name="Designation" asp-for="Employee.Designation" />
+                <span id="designationError" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" name="command" value="add" class="btn btn-primary">Save</button>
+                <button type="button" id="resetButton" class="btn btn-secondary">Reset</button>
+                <a asp-page="/Index" class="btn btn-dark">Cancel</a>
+                <a asp-page="/EmployeeList">Go to EmployeeList</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr />
+@*<script>
+
+        $(document).ready(function () {
+
+            $('#resetButton').click(function () {
+                $('#employeeForm')[0].reset();
+            });
+        });
+
+    </script>*@
+
+
+
+
+<script>
+    // Function to clear error messages
+    function clearError(elementId) {
+        document.getElementById(elementId).innerHTML = "";
+    }
+
+    function validateForm() {
+        var isValid = true; // Flag to track form validity
+
+        // Fetch form input values
+        var id = document.getElementById("eid").value;
+        var name = document.getElementById("name").value;
+        var country = document.getElementById("country").value;
+        var city = document.getElementById("city").value;
+        var department = document.getElementById("department").value;
+        var designation = document.getElementById("designation").value;
+
+       
+        clearError("eidError");
+        clearError("nameError");
+        clearError("countryError");
+        clearError("cityError");
+        clearError("departmentError");
+        clearError("designationError");
+
+       
+        if (id.trim() === '') {
+            document.getElementById("eidError").innerHTML = "Please enter the Employee ID.";
+            isValid = false;
+        }
+
+        if (name.trim() === '') {
+            document.getElementById("nameError").innerHTML = "Please enter the Employee Name.";
+            isValid = false;
+        }
+
+        if (country.trim() === '') {
+            document.getElementById("countryError").innerHTML = "Please enter the Country.";
+            isValid = false;
+        }
+
+        if (city.trim() === '') {
+            document.getElementById("cityError").innerHTML = "Please enter the City.";
+            isValid = false;
+        }
+
+        if (department.trim() === '') {
+            document.getElementById("departmentError").innerHTML = "Please enter the Department.";
+            isValid = false;
+        }
+
+        if (designation.trim() === '') {
+            document.getElementById("designationError").innerHTML = "Please enter the Designation.";
+            isValid = false;
+        }
+        return isValid;
+    }
+
+    
+    document.getElementById("eid").addEventListener("input", function () {
+        clearError("eidError");
+    });
+    document.getElementById("name").addEventListener("input", function () {
+        clearError("nameError");
+    });
+    document.getElementById("country").addEventListener("input", function () {
+        clearError("countryError");
+    });
+    document.getElementById("city").addEventListener("input", function () {
+        clearError("cityError");
+    });
+    document.getElementById("department").addEventListener("input", function () {
+        clearError("departmentError");
+    });
+    document.getElementById("designation").addEventListener("input", function () {
+        clearError("designationError");
+    });
+
+    $(document).ready(function () {
+        $('#resetButton').click(function () {
+            $('#employeeForm')[0].reset();
+            clearError("eidError");
+            clearError("nameError");
+            clearError("countryError");
+            clearError("cityError");
+            clearError("departmentError");
+            clearError("designationError");
+        });
+    });
+</script>
+
+
+
+

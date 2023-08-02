@@ -1,0 +1,53 @@
+﻿@page "/Edit"
+@model CosmosDbCrudByRP.Pages.EditModel;
+@using CosmosDbCrudByRP.Models;
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+@{
+    ViewData["Title"] = "Employee Management";
+}
+
+<div class="card">
+    <div class="card-body">
+        <form method="post">
+
+            <input type="hidden" asp-for="Employee.id" />
+
+            <div class="form-group">
+                <label asp-for="Employee.Name" class="control-label"></label>
+                <input asp-for="Employee.Name" id="eid" class="form-control" />
+                <span asp-validation-for="Employee.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Employee.Country" class="control-label"></label>
+                <input asp-for="Employee.Country" id="name" class="form-control" />
+                <span asp-validation-for="Employee.Country" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Employee.City" class="control-label"></label>
+                <input asp-for="Employee.City" id="country" class="form-control" />
+                <span asp-validation-for="Employee.City" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Employee.Department" class="control-label"></label>
+                <input asp-for="Employee.Department" class="form-control" />
+                <span asp-validation-for="Employee.Department" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Employee.Designation" class="control-label"></label>
+                <input asp-for="Employee.Designation" class="form-control" />
+                <span asp-validation-for="Employee.Designation" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" name="command" value="update" asp-route-partitionKey="Employee.id" class="btn btn-primary">Update</button>
+                <a asp-page="/Index" class="btn btn-secondary">Cancel</a>
+            </div>
+
+        </form>
+    </div>
+</div>

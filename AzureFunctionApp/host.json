@@ -1,0 +1,14 @@
+{
+    "version": "2.0",
+    "logging": {
+      "applicationInsights": {
+        "samplingSettings": {
+          "isEnabled": true,
+          "functionTimeout": "00:05:00", // Increase to the desired timeout value (e.g., 5 minutes),
+          "excludedTypes": "Request"
+        }
+      }
+   
+
+    }
+}

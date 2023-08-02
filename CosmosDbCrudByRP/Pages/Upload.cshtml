@@ -1,0 +1,21 @@
+﻿@page "/Upload"
+@model CosmosDbCrudByRP.Pages.UploadModel
+
+
+@{
+    if (TempData["UploadSuccess"] != null)
+    {
+        <p style="color:green">@TempData["UploadSuccess"]</p>
+    }
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="image">Image:</label>
+        <input type="file" class="form-control-file" id="image" name="Image">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
