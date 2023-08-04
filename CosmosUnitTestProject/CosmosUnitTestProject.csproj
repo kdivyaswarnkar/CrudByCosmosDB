@@ -29,6 +29,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CosmosDbCrudByRP\CosmosDbCrudByRP.csproj" />
+    <ProjectReference Include="..\CosmosDbCrud_DAL\CosmosDbCrud_DAL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="local.settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

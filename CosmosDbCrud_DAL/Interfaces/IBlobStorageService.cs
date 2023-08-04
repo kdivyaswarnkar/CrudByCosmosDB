@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
-
-namespace CosmosDbCrudByRP.Services
+namespace CosmosDbCrud_DAL.Services
 {
-   public interface IBlobStorageService
+    public interface IBlobStorageService
     {
         Task<string> UploadFileAsync(IFormFile file);
     }

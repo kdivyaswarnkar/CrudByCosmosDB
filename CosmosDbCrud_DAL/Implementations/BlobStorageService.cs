@@ -6,11 +6,10 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace CosmosDbCrudByRP.Services
-{
-    /// <summary>
-    /// Service class to interact with Azure Blob Storage for file upload.
-    /// </summary>
+namespace CosmosDbCrud_DAL.Services
+{/// <summary>
+ /// Service class to interact with Azure Blob Storage for file upload.
+ /// </summary>
     public class BlobStorageService : IBlobStorageService
     {
         private readonly CloudBlobContainer _blobContainer;
@@ -18,20 +17,19 @@ namespace CosmosDbCrudByRP.Services
         /// <summary>
         /// Initializes a new instance of the BlobStorageService class.
         /// </summary>
-        /// <param name="configuration">The configuration instance to read Azure Blob Storage settings.</param>
-        public BlobStorageService(IConfiguration configuration)
+        public BlobStorageService(IConfiguration config)
         {
-            // Read the connection string and container name from the configuration
 
-            string connectionString = configuration.GetValue<string>("AzureBlobStorage:blobConnectionString");
-            string containerName = configuration.GetValue<string>("AzureBlobStorage:blobContainerName");
-
+            // Read the connection string and container name from environment variables
+            string connectionString = config["Values:blobConnectionString"];
+            string containerName = config["Values:blobContainerName"];
+           
             // Create a CloudBlobContainer reference based on the provided connection string and container name
-
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connectionString);
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
             _blobContainer = blobClient.GetContainerReference(containerName);
         }
+
 
         /// <summary>
         /// Uploads a file to Azure Blob Storage asynchronously.

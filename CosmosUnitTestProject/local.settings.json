@@ -1,0 +1,9 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "MockCosmosDB": "AccountEndpoint=https://mock-cosmos-account.documents.azure.com:443/;AccountKey=SGcGKqZGhXJe8SqRZwNRt71lpqrfvhZe5BFD1ZvRoCf52CmJIVts9ozMKlbMdx0eEZk8EJiiOQibACDbKKukFA==;",
+    "MockDatabase": "MockDatabase",
+    "MockContainer": "MockContainer"
+  }
+}
+

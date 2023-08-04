@@ -1,10 +1,10 @@
 ﻿@page "/Index"
 @model CosmosDbCrudByRP.Pages.IndexModel
-@using CosmosDbCrudByRP.Models;
+@using CosmosDbCrud_DAL.Models;
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 @{
-   // ViewData["Title"] = "Employee Management";
+    // ViewData["Title"] = "Employee Management";
     IEnumerable<EmployeeModel> Employee = (IEnumerable<EmployeeModel>)ViewData["Employees"];
 }
 
@@ -98,7 +98,7 @@
         var department = document.getElementById("department").value;
         var designation = document.getElementById("designation").value;
 
-       
+
         clearError("eidError");
         clearError("nameError");
         clearError("countryError");
@@ -106,7 +106,7 @@
         clearError("departmentError");
         clearError("designationError");
 
-       
+
         if (id.trim() === '') {
             document.getElementById("eidError").innerHTML = "Please enter the Employee ID.";
             isValid = false;
@@ -139,7 +139,7 @@
         return isValid;
     }
 
-    
+
     document.getElementById("eid").addEventListener("input", function () {
         clearError("eidError");
     });

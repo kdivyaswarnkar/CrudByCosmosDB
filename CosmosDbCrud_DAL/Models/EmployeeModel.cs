@@ -1,7 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace CosmosDbCrudByRP.Models
+namespace CosmosDbCrud_DAL.Models
 {
+
     #region EmploeeModelProperties
     public class EmployeeModel
     {

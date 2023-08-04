@@ -1,13 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 
-
-namespace CosmosUnitTestProject.UnitTest
+namespace CosmosDbCrud_DAL.Implementations
 {
-
-    public static class TestConfiguration
+   public static class testConfigurationsService
     {
-        public static IConfiguration GetMockConfiguration(Dictionary<string, string> configurationValues)
+
+        public static IConfiguration GetConfiguration(Dictionary<string, string> configurationValues)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection(configurationValues)
@@ -15,8 +14,7 @@ namespace CosmosUnitTestProject.UnitTest
 
             return configuration;
         }
-
-        public static IConfiguration GetLocalConfiguration()
+        public static IConfiguration GetLocalConfig()
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .AddJsonFile("local.settings.json")
@@ -25,14 +23,12 @@ namespace CosmosUnitTestProject.UnitTest
             return configuration;
         }
 
-        public static IConfiguration GetActualConfiguration()
+        public static IConfiguration GetActualConfig()
         {
             IConfiguration config = new ConfigurationBuilder()
                .AddJsonFile("appsettings.json")
                .Build();
             return config;
         }
-
     }
 }
-

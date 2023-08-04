@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DataAccessLayer")]
+[assembly: AssemblyTitle("CosmosDbCrud_DAL")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DataAccessLayer")]
+[assembly: AssemblyProduct("CosmosDbCrud_DAL")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("cd81a777-afc0-45e1-b444-2733ff274876")]
+[assembly: Guid("1b9b6135-8c2c-4d0d-add1-a5c9ec12e10d")]
 
 // Version information for an assembly consists of the following four values:
 //

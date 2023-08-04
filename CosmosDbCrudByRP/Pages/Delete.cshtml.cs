@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using CosmosDbCrudByRP.Models;
-using CosmosDbCrudByRP.Services;
+using CosmosDbCrud_DAL.Model;
+using CosmosDbCrud_DAL.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

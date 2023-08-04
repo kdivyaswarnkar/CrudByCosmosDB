@@ -1,30 +1,27 @@
-﻿using CosmosDbCrudByRP.Models;
+﻿using CosmosDbCrud_DAL.Models;
 using Microsoft.Azure.Cosmos;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
-namespace CosmosDbCrudByRP.Services
+namespace CosmosDbCrud_DAL.Model
 {
     public class EmployeeService : IEmployeeService
     {
-         private readonly Container _container;
-         private readonly ICosmosClientWrapper _container1;
+        private readonly Container _container;
 
-        // Configuration Data
-        #region Configuration
-        public EmployeeService(IConfiguration configuration, ICosmosClientWrapper cosmosClientWrapper)  
+        public EmployeeService(IConfiguration configu)
         {
+            string accountUri = configu["Values:AccountUri"];
+            string primaryKey = configu["Values:PrimaryKey"];
+            string databaseName = configu["Values:DatabaseName"];
+            string containerName = configu["Values:ContainerName"];
 
-            CosmosClient client = new CosmosClient(configuration.GetValue<string>("CosmosDb:AccountUri"),
-                configuration.GetValue<string>("CosmosDb:PrimaryKey"));
-            _container = client.GetContainer(configuration.GetValue<string>("CosmosDb:DatabaseName"),
-                configuration.GetValue<string>("CosmosDb:ContainerName"));
-           // _container1 = cosmosClientWrapper;
+            CosmosClient cosmosClient = new CosmosClient(accountUri, primaryKey);
+            _container = cosmosClient.GetContainer(databaseName, containerName);
         }
-        #endregion
 
         // Get All Employees 
         #region GetAllEmployees
@@ -57,7 +54,7 @@ namespace CosmosDbCrudByRP.Services
 
         // Get Employee By Id And PartitionKey=id
         #region GetEmployeeById
-        public async Task<EmployeeModel> GetEmployeeAsync(string id,string partitionKey)
+        public async Task<EmployeeModel> GetEmployeeAsync(string id, string partitionKey)
         {
             try
             {
@@ -99,7 +96,7 @@ namespace CosmosDbCrudByRP.Services
 
         // Update Employee Details
         #region UpdateEmployee
-        public async Task UpdateEmployeeAsync(EmployeeModel employee,string partitionKey)
+        public async Task UpdateEmployeeAsync(EmployeeModel employee, string partitionKey)
         {
             try
             {
@@ -119,7 +116,7 @@ namespace CosmosDbCrudByRP.Services
 
         // Delete Employee by Id / Partitionkey
         #region DeleteEmployee
-        public async Task DeleteEmployeeAsync(string id,string partitionKey)
+        public async Task DeleteEmployeeAsync(string id, string partitionKey)
         {
             try
             {
@@ -137,4 +134,3 @@ namespace CosmosDbCrudByRP.Services
         #endregion
     }
 }
-
