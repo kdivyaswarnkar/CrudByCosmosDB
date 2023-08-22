@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CosmosDbCrud_DAL.Implementations
 {
-   public static class testConfigurationsService
+   public static class TestConfigurationsService
     {
 
         public static IConfiguration GetConfiguration(Dictionary<string, string> configurationValues)

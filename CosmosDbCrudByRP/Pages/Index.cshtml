@@ -20,11 +20,11 @@
 
             @*<form id="employeeForm" method="post">*@
 
-            <div class="form-group">
-                <label for="eid">Id:</label>
-                <input type="text" class="form-control" id="eid" name="Id" asp-for="Employee.id" />
-                <span id="eidError" class="text-danger"></span>
-            </div>
+            @*<div class="form-group">
+            <label for="eid">Id:</label>
+            <input type="text" class="form-control" id="eid" name="Id" asp-for="Employee.id" />
+            <span id="eidError" class="text-danger"></span>
+        </div>*@
 
             <div class="form-group">
                 <label for="name">Name:</label>
@@ -56,6 +56,8 @@
                 <span id="designationError" class="text-danger"></span>
             </div>
 
+            <hr />
+
             <div class="form-group">
                 <button type="submit" name="command" value="add" class="btn btn-primary">Save</button>
                 <button type="button" id="resetButton" class="btn btn-secondary">Reset</button>
@@ -66,18 +68,13 @@
     </div>
 </div>
 
-<hr />
-@*<script>
 
-        $(document).ready(function () {
 
-            $('#resetButton').click(function () {
-                $('#employeeForm')[0].reset();
-            });
-        });
-
-    </script>*@
-
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("eid").style.display = "none";
+    });
+</script>
 
 
 
@@ -88,18 +85,18 @@
     }
 
     function validateForm() {
-        var isValid = true; // Flag to track form validity
+        let isValid = true; // Flag to track form validity
 
         // Fetch form input values
-        var id = document.getElementById("eid").value;
-        var name = document.getElementById("name").value;
-        var country = document.getElementById("country").value;
-        var city = document.getElementById("city").value;
-        var department = document.getElementById("department").value;
-        var designation = document.getElementById("designation").value;
+        //var id = document.getElementById("eid").value;
+        let name = document.getElementById("name").value;
+        let country = document.getElementById("country").value;
+        let city = document.getElementById("city").value;
+        let department = document.getElementById("department").value;
+        let designation = document.getElementById("designation").value;
 
 
-        clearError("eidError");
+        //clearError("eidError");
         clearError("nameError");
         clearError("countryError");
         clearError("cityError");
@@ -107,10 +104,10 @@
         clearError("designationError");
 
 
-        if (id.trim() === '') {
-            document.getElementById("eidError").innerHTML = "Please enter the Employee ID.";
-            isValid = false;
-        }
+        //if (id.trim() === '') {
+        //    document.getElementById("eidError").innerHTML = "Please enter the Employee ID.";
+        //    isValid = false;
+        //}
 
         if (name.trim() === '') {
             document.getElementById("nameError").innerHTML = "Please enter the Employee Name.";
@@ -140,9 +137,9 @@
     }
 
 
-    document.getElementById("eid").addEventListener("input", function () {
-        clearError("eidError");
-    });
+    //document.getElementById("eid").addEventListener("input", function () {
+    //    clearError("eidError");
+    //});
     document.getElementById("name").addEventListener("input", function () {
         clearError("nameError");
     });
@@ -162,7 +159,7 @@
     $(document).ready(function () {
         $('#resetButton').click(function () {
             $('#employeeForm')[0].reset();
-            clearError("eidError");
+            //clearError("eidError");
             clearError("nameError");
             clearError("countryError");
             clearError("cityError");

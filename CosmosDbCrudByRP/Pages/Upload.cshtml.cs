@@ -21,7 +21,7 @@ namespace CosmosDbCrudByRP.Pages
         {
             if (Image != null && Image.Length > 0)
             {
-                var imageUrl = await _blobStorageService.UploadFileAsync(Image);
+                string imageUrl = await _blobStorageService.UploadFileAsync(Image);
 
                 TempData["UploadSuccess"] = "Image uploaded successfully.";
             }

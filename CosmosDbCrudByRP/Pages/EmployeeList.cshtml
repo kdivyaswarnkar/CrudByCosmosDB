@@ -47,9 +47,9 @@
                 <td>@employee.Department</td>
                 <td>@employee.Designation</td>
                 <td>
-                    <a class="btn btn-info editBtn" asp-page="/Edit" asp-route-id="@employee.id" asp-route-partitionKey="@employee.id">Edit</a> &nbsp;
+                    <a class="btn btn-info editBtn text-black-50" asp-page="/Edit" asp-route-id="@employee.id" asp-route-partitionKey="@employee.id">Edit</a> &nbsp;
 
-                    <a class="btn btn-danger deleteBtn" asp-page="/Delete" asp-route-id="@employee.id" asp-route-partitionKey="@employee.id">Delete</a>
+                    <a class="btn btn-danger deleteBtn text-dark" asp-page="/Delete" asp-route-id="@employee.id" asp-route-partitionKey="@employee.id">Delete</a>
 
                 </td>
             </tr>
@@ -63,22 +63,22 @@
 <script>
     $(document).ready(function () {
         $('.sortable').click(function () {
-            var table = $(this).closest('table');
-            var rows = table.find('tbody > tr').toArray().sort(comparator($(this).index()));
+            let table = $(this).closest('table');
+            let rows = table.find('tbody > tr').toArray().sort(comparator($(this).index()));
 
             this.asc = !this.asc;
             if (!this.asc) {
                 rows = rows.reverse();
             }
 
-            for (var i = 0; i < rows.length; i++) {
+            for (let i = 0; i < rows.length; i++) {
                 table.append(rows[i]);
             }
         });
 
         function comparator(index) {
             return function (a, b) {
-                var valA = getCellValue(a, index),
+                let valA = getCellValue(a, index),
                     valB = getCellValue(b, index);
 
                 return $.isNumeric(valA) && $.isNumeric(valB) ?

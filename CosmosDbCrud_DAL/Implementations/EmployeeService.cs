@@ -11,13 +11,16 @@ namespace CosmosDbCrud_DAL.Model
     public class EmployeeService : IEmployeeService
     {
         private readonly Container _container;
+        private readonly IConfiguration _config;
 
-        public EmployeeService(IConfiguration configu)
+        public EmployeeService(IConfiguration config)
         {
-            string accountUri = configu["Values:AccountUri"];
-            string primaryKey = configu["Values:PrimaryKey"];
-            string databaseName = configu["Values:DatabaseName"];
-            string containerName = configu["Values:ContainerName"];
+            _config = config;
+
+            string accountUri = _config["Values:AccountUri"];
+            string primaryKey = _config["Values:PrimaryKey"];
+            string databaseName = _config["Values:DatabaseName"];
+            string containerName = _config["Values:ContainerName"];
 
             CosmosClient cosmosClient = new CosmosClient(accountUri, primaryKey);
             _container = cosmosClient.GetContainer(databaseName, containerName);

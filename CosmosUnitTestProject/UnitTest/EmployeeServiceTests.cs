@@ -1,6 +1,7 @@
 ﻿using CosmosDbCrud_DAL.Model;
 using CosmosDbCrud_DAL.Models;
 using CosmosUnitTestProject.UnitTest;
+using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -75,3 +76,4 @@ namespace CosmosDbCrudByRP.Tests
         }
     }
 }
+

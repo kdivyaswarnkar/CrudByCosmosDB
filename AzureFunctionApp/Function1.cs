@@ -42,7 +42,7 @@ public static class Function1
 
 
         // Create a new DocumentClient instance to interact with Cosmos DB
-        using (var client = new DocumentClient(new Uri(cosmosDbEndpoint), cosmosDbKey))
+        using (DocumentClient client = new DocumentClient(new Uri(cosmosDbEndpoint), cosmosDbKey))
         {
             // Configure feed options to enable cross-partition queries
             FeedOptions requestOptions = new FeedOptions
@@ -51,9 +51,9 @@ public static class Function1
             };
 
             // Create a list to store the retrieved documents
-            var documents = new List<dynamic>();
+            List<dynamic> documents = new List<dynamic>();
             // Execute the document query and iterate through the results
-            var documentQuery = client.CreateDocumentQuery<dynamic>(
+            IDocumentQuery<dynamic> documentQuery = client.CreateDocumentQuery<dynamic>(
                 UriFactory.CreateDocumentCollectionUri(databaseName, containerName),
                 query,
                 requestOptions).AsDocumentQuery();
@@ -66,7 +66,7 @@ public static class Function1
 
 
             // Create a dependency telemetry for tracking the Cosmos DB call
-            var dependencyTelemetry = new DependencyTelemetry()
+            DependencyTelemetry dependencyTelemetry = new DependencyTelemetry()
             {
                 Name = "CosmosDB Call",
                 Target = "cosmosDbEndpoint",
@@ -162,7 +162,7 @@ public static class Function1
     /// </summary>
     private static string GetRequestCharge(IDocumentQuery<dynamic> documentQuery)
     {
-        var feedResponse = documentQuery.ExecuteNextAsync().Result;
+        FeedResponse<dynamic> feedResponse = documentQuery.ExecuteNextAsync().Result;
         return feedResponse.RequestCharge.ToString("0.00");
     }
 }
